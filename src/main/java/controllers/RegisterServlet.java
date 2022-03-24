@@ -10,12 +10,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.beanutils.BeanUtils;
 
 import beans.form_data.RegisterData;
+import dao.UserDAO;
+import entities.User;
+import utils.JpaUtil;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private UserDAO userDAO;
+
     public RegisterServlet() {
         super();
+        this.userDAO = new UserDAO();
     }
 
     protected void doGet(
@@ -30,15 +36,15 @@ public class RegisterServlet extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
-    	RegisterData bean = new RegisterData();
+    	User entity = new User();
     	try {
-    		BeanUtils.populate(bean, request.getParameterMap());
+    		BeanUtils.populate(entity, request.getParameterMap());
+    		this.userDAO.create(entity);
+    		// Thông báo thành công
     	} catch (Exception e) {
     		e.printStackTrace();
+    		// Thông báo thất bại
     	}
-    	
-    	System.out.println(bean.getHoTen());
-    	System.out.println(bean.getDiaChi());
-    	System.out.println(bean.getGioiTinh());
+
 	}
 }

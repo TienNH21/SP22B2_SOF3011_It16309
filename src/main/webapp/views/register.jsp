@@ -37,13 +37,6 @@
 			<label>Nữ</label>
 		</div>
 		<div>
-			<label>Loại KH</label>
-			<select name="loaiKH">
-				<option value="0">Thường</option>
-				<option value="1">VIP</option>
-			</select>
-		</div>
-		<div>
 			<button>Đăng ký</button>
 			<button type="reset">Xóa form</button>
 		</div>

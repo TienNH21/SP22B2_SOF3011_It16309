@@ -49,8 +49,8 @@
 	<!-- End Navbar -->
 	
 	<div class="row">
-		<div class="col-3" style="height:300px;"></div>
-		<div class="col-9 bg-warning">
+		<div class="col-3"></div>
+		<div class="col-9">
 			<jsp:include page="${ view }"></jsp:include>
 		</div>
 	</div>

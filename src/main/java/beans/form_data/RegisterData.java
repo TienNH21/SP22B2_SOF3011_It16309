@@ -8,6 +8,24 @@ public class RegisterData {
 	private String sdt;
 	private int gioiTinh;
 	private int loaiKH;
+	
+	public RegisterData() {
+		//
+	}
+
+	public RegisterData(String hoTen, String diaChi,
+		String email, String password, String sdt,
+		int gioiTinh, int loaiKH) {
+		super();
+		this.hoTen = hoTen;
+		this.diaChi = diaChi;
+		this.email = email;
+		this.password = password;
+		this.sdt = sdt;
+		this.gioiTinh = gioiTinh;
+		this.loaiKH = loaiKH;
+	}
+
 
 	public String getHoTen() {
 		return hoTen;
