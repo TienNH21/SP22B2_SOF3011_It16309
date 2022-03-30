@@ -68,7 +68,7 @@ public class UserDAO {
 	}
 	
 	public User findById(int id) {
-		User entity = this.em.find(id, User.class);
+		User entity = this.em.find(User.class, id);
 		return entity;
 	}
 }

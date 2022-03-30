@@ -101,6 +101,8 @@ public class UserServlet extends HttpServlet {
 				request.getParameterMap());
 			
 			this.userDAO.create(entity);
+			response.sendRedirect("/SP22B2_SOF3011_IT16309"
+				+ "/users/index");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -110,6 +112,15 @@ public class UserServlet extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
+		String idStr = request.getParameter("id");
+		int id = Integer.parseInt(idStr);
+		User entity = this.userDAO.findById(id);
+		request.setAttribute("user", entity);
+		
+		request.setAttribute("view",
+			"/views/admin/users/edit.jsp");
+		request.getRequestDispatcher("/views/layout.jsp")
+			.forward(request, response);
 	}
 
 	private void show(
@@ -132,5 +143,23 @@ public class UserServlet extends HttpServlet {
 		HttpServletRequest request,
 		HttpServletResponse response
 	) throws ServletException, IOException {
+		String idStr = request.getParameter("id");
+		try {
+			int id = Integer.parseInt(idStr);
+			User oldValue = this.userDAO.findById(id);
+			User newValue = new User();
+			BeanUtils.populate(newValue,
+				request.getParameterMap());
+			
+			newValue.setPassword( oldValue.getPassword() );
+			this.userDAO.update(newValue);
+			response.sendRedirect("/SP22B2_SOF3011_IT16309"
+				+ "/users/index");
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO: thông báo lỗi
+			response.sendRedirect("/SP22B2_SOF3011_IT16309"
+				+ "/users/edit?id=" + idStr);
+		}
 	}
 }
