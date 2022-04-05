@@ -44,6 +44,7 @@ public class CategoryServlet extends HttpServlet {
 		);
 		
 		User user = this.userDAO.findById(userId);
+		System.out.println( user.getCategories().size() );
 		Category cate = new Category();
 		cate.setTen(ten);
 		cate.setUser(user);

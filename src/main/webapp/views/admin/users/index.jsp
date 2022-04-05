@@ -1,7 +1,22 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page
+	language="java"
+	contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"
+    session="true" %>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jstl/fmt_rt" prefix="fmt" %>
+<c:if test="${ !empty sessionScope.message }">
+	<div class="alert alert-success">
+		${ sessionScope.message }
+		<c:remove var="message" scope="session" />
+	</div>
+</c:if>
+<c:if test="${ !empty sessionScope.error }">
+	<div class="alert alert-danger">
+		${ sessionScope.error }
+		<c:remove var="error" scope="session" />
+	</div>
+</c:if>
 
 <h2>
 	<fmt:formatDate value="${ now }"

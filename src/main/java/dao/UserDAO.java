@@ -71,4 +71,14 @@ public class UserDAO {
 		User entity = this.em.find(User.class, id);
 		return entity;
 	}
+	
+	public User findByEmail(String email) {
+		String jpql = "SELECT obj FROM User obj "
+			+ "WHERE obj.email = :email";
+		TypedQuery<User> query = this.em.createQuery(jpql,
+				User.class);
+		query.setParameter("email", email);
+		
+		return query.getSingleResult();
+	}
 }
